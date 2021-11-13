@@ -13,7 +13,7 @@ jobs:
   GitHub-Actions-Test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Subscription ID " ${{ SUBSCRIPTION_ID }}
+      - run: echo "Subscription ID ${{ SUBSCRIPTION_ID }}"
 
       - name: Checkout
         uses: actions/checkout@v2
