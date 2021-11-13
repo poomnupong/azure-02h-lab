@@ -5,6 +5,8 @@ on:
     branches:
       - test
       - prod
+      - dev
+      - dev2
 
 env:
   SUBSCRIPTION_ID: "f7741b3d-d2ac-4be0-8083-e8dc60675c97"
@@ -13,7 +15,7 @@ jobs:
   GitHub-Actions-Test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Subscription ID ${SUBSCRIPTION_ID}"
+      - run: echo "variable ${GITHUB_REF}"
 
       - name: Checkout
         uses: actions/checkout@v2
@@ -23,4 +25,4 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       
-      - run: az account show
+      - run: az account show -o table
