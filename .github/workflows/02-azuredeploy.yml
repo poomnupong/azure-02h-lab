@@ -4,13 +4,23 @@ on:
   push:
     branches:
       - test
-      - main
+      - prod
 
 env:
-  subscriptionId: "f7741b3d-d2ac-4be0-8083-e8dc60675c97"
+  SUBSCRIPTION_ID: "f7741b3d-d2ac-4be0-8083-e8dc60675c97"
 
 jobs:
   GitHub-Actions-Test:
     runs-on: ubuntu-latest
     steps:
       - run: echo "github action run 1"
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Azure login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      
+      - run: az account show
