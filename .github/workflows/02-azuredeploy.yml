@@ -17,6 +17,11 @@ jobs:
     steps:
       - run: echo "variable ${GITHUB_REF}"
 
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
       - name: Checkout
         uses: actions/checkout@v2
 
