@@ -17,9 +17,12 @@ jobs:
     steps:
       - run: echo "variable ${GITHUB_REF}"
 
+      - name: Set env.BRANCH
+        run: echo "BRANCH=$(echo $GITHUB_REF | cut -d'/' -f 3)" >> $GITHUB_ENV
+
       - name: Extract branch name
         shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        run: echo "This is ${env.BRANCH}"
         id: extract_branch
 
       - name: Checkout
