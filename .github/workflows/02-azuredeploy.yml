@@ -22,7 +22,7 @@ jobs:
 
       - name: Extract branch name
         shell: bash
-        run: echo "This is ${env.BRANCH}"
+        run: echo "This is ${{ env.BRANCH }}"
         id: extract_branch
 
       - name: Checkout
