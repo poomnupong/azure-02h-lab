@@ -51,5 +51,5 @@ jobs:
           # deploymentMode: Complete
           template: ./templates/01-resourcegroups.bicep
           parameters:
-            BRANCH="${GITHUB_REF_NAME}"
+            BRANCH=${{ env.GITHUB_REF_NAME }}
             REGION=${{ env.REGION }}
