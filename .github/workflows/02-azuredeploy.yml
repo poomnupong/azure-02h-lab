@@ -5,16 +5,19 @@ on:
     branches:
       - test
       - prod
-      - dev
       - dev2
+  pull_request:
+    branches:
+      - test
+      - prod
 
 env:
   SUBSCRIPTION_ID: "f7741b3d-d2ac-4be0-8083-e8dc60675c97"
   REGION: southcentralus
 
 jobs:
-  GitHub-Actions-Test:
-    name: GitHub Actions Test #1
+  Deploy-to-Azure:
+    name: Deploy to Azure
     runs-on: ubuntu-latest
     steps:
       - name: DEBUG - see GITHUB_REF
@@ -24,19 +27,17 @@ jobs:
       - name: Set env.BRANCH
         run: echo "BRANCH=$(echo $GITHUB_REF | cut -d'/' -f 3)" >> $GITHUB_ENV
 
-      - name: Extract branch name
+      # DEBUG: show branch name
+      - name: DEBUG - Extract branch name
         shell: bash
         run: echo "This is ${{ env.BRANCH }}"
         id: extract_branch
 
-      - name: Azure login
-        uses: azure/login@v1
+      - uses: actions/checkout@v2
+      - uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Checkout
-        uses: actions/checkout@v2
-      
       - run: az account show -o table
 
       - name: Deploy resource groups
