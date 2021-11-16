@@ -42,13 +42,11 @@ jobs:
       - name: Deploy resource groups
         uses: Azure/arm-deploy@v1
         with:
-          scope: resourcegroup
-          resourceGroupName: "${{ env.BRANCH }}-launchpad-${{ env.REGION }}-rg"
+          scope: subscription
           subscriptionId: ${{ env.SUBSCRIPTION_ID }}
           region: ${{ env.REGION }}
-          deploymentMode: Complete
-          template: ./modules/resourcegroup.bicep
+          # deploymentMode: Complete
+          template: ./templates/01-resourcegroups.bicep
           parameters:
-            RG_NAME="${{ env.BRANCH }}-launchpad-${{ env.REGION }}-rg"
             BRANCH="${{ env.BRANCH }}"
             REGION=${{ env.REGION }}

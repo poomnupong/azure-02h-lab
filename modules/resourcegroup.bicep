@@ -1,4 +1,4 @@
-// targetScope = 'resourcegroup'
+targetScope = 'subscription'
 
 param BRANCH string
 param RG_NAME string
