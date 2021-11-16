@@ -5,7 +5,7 @@ targetScope = 'subscription'
 param BRANCH string
 param REGION string = 'southcentralus'
 
-// specify all resource group names here in array so we can loop through them
+// specify all resource group names here in array so we can loop through them a
 var RG_ARRAY = [
   '${BRANCH}-launchpad-${REGION}-rg'
   '${BRANCH}-conn1-${REGION}-rg'
