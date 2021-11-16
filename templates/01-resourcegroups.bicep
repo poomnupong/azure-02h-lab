@@ -9,7 +9,7 @@ param REGION string = 'southcentralus'
 var RG_ARRAY = [
   '${BRANCH}-launchpad-${REGION}-rg'
   '${BRANCH}-conn1-${REGION}-rg'
-  '${BRANCH}-onpremhyperv1-${REGION}-rg'
+  '${BRANCH}-onpremhpv1-${REGION}-rg'
   '${BRANCH}-lz1-${REGION}-rg'
 ]
 
