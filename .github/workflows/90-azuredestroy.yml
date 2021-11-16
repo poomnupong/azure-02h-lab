@@ -1,4 +1,4 @@
-name: "Destroy branch"
+name: "Destroy branch environment in Azure"
 
 on:
   workflow_dispatch:
@@ -27,4 +27,4 @@ jobs:
         uses: Azure/cli@v1
         with:
           inlineScript: |
-            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.BRANCH }}-launchpad-${{ env.REGION }}-rg
+            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.BRANCH }}-launchpad-${{ env.REGION }}-rg --yes
