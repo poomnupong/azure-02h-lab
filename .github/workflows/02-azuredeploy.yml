@@ -28,13 +28,25 @@ jobs:
         shell: bash
         run: echo "This is ${{ env.BRANCH }}"
         id: extract_branch
-
-      - name: Checkout
-        uses: actions/checkout@v2
-
+        
       - name: Azure login
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Checkout
+        uses: actions/checkout@v2
       
       - run: az account show -o table
+
+      - name: Deploy resource group
+        uses: Azure/arm-deploy@v1
+        with:
+          scope: subscription
+          subscriptionId: ${{ env.SUBSCRIPTION_ID }}
+          deploymentMode: Complete
+          template: ./modules/resourcegroup.bicep
+          parameters:
+            RG_NAME: "${{ env.BRANCH }}-launchpad-${{ env.LOCATION }}-rg"
+            BRANCH: "${{ env.BRANCH }}"
+            LOCATION: ${{ env.LOCATION }}
