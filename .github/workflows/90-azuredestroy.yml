@@ -6,6 +6,7 @@ on:
 env:
   SUBSCRIPTION_ID: f7741b3d-d2ac-4be0-8083-e8dc60675c97
   REGION: southcentralus
+  BRANCH: ${GITHUB_REF_NAME}
 
 jobs:
   Destroy-Branch:
@@ -27,7 +28,7 @@ jobs:
         uses: Azure/cli@v1
         with:
           inlineScript: |
-            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.GITHUB_REF_NAME }}-launchpad-${{ env.REGION }}-rg --yes
-            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.GITHUB_REF_NAME }}-conn1-${{ env.REGION }}-rg --yes
-            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.GITHUB_REF_NAME }}-onpremhpv1-${{ env.REGION }}-rg --yes
-            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.GITHUB_REF_NAME }}-lz1-${{ env.REGION }}-rg --yes
+            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ BRANCH }}-launchpad-${{ env.REGION }}-rg --yes
+            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ BRANCH }}-conn1-${{ env.REGION }}-rg --yes
+            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ BRANCH }}-onpremhpv1-${{ env.REGION }}-rg --yes
+            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ BRANCH }}-lz1-${{ env.REGION }}-rg --yes
