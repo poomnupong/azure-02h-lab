@@ -10,13 +10,17 @@ on:
 
 env:
   SUBSCRIPTION_ID: "f7741b3d-d2ac-4be0-8083-e8dc60675c97"
+  LOCATION: southcentralus
 
 jobs:
   GitHub-Actions-Test:
+    name: GitHub Actions Test #1
     runs-on: ubuntu-latest
     steps:
-      - run: echo "variable ${GITHUB_REF}"
+      - name: DEBUG - see GITHUB_REF
+        run: echo "variable ${GITHUB_REF}"
 
+      # extract branch name into GitHub environment BRANCH
       - name: Set env.BRANCH
         run: echo "BRANCH=$(echo $GITHUB_REF | cut -d'/' -f 3)" >> $GITHUB_ENV
 
