@@ -14,7 +14,7 @@ on:
 env:
   SUBSCRIPTION_ID: "f7741b3d-d2ac-4be0-8083-e8dc60675c97"
   REGION: southcentralus
-  BRANCH: ${GITHUB_REF_NAME}
+  BRANCH: "${GITHUB_REF_NAME}"
 
 jobs:
   Deploy-to-Azure:
