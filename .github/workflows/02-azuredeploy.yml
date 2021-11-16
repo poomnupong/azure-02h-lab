@@ -41,7 +41,7 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - run: az account show -o table
+      # - run: az account show -o table
 
       - name: Deploy resource groups
         uses: Azure/arm-deploy@v1

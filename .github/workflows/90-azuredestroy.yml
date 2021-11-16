@@ -6,7 +6,6 @@ on:
 env:
   SUBSCRIPTION_ID: f7741b3d-d2ac-4be0-8083-e8dc60675c97
   REGION: southcentralus
-  BRANCH: ${GITHUB_REF_NAME}
 
 jobs:
   Destroy-Branch:
@@ -16,7 +15,7 @@ jobs:
     steps:
       # extract branch name into GitHub environment BRANCH
       - name: Set env.BRANCH
-        run: echo "BRANCH=$(echo $GITHUB_REF | cut -d'/' -f 3)" >> $GITHUB_ENV
+        run: echo "BRANCH=$(echo $GITHUB_REF_NAME)" >> $GITHUB_ENV
 
       - uses: actions/checkout@v2
 
@@ -28,7 +27,7 @@ jobs:
         uses: Azure/cli@v1
         with:
           inlineScript: |
-            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ BRANCH }}-launchpad-${{ env.REGION }}-rg --yes
-            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ BRANCH }}-conn1-${{ env.REGION }}-rg --yes
-            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ BRANCH }}-onpremhpv1-${{ env.REGION }}-rg --yes
-            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ BRANCH }}-lz1-${{ env.REGION }}-rg --yes
+            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.BRANCH }}-launchpad-${{ env.REGION }}-rg --yes
+            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.BRANCH }}-conn1-${{ env.REGION }}-rg --yes
+            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.BRANCH }}-onpremhpv1-${{ env.REGION }}-rg --yes
+            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.BRANCH }}-lz1-${{ env.REGION }}-rg --yes
