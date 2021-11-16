@@ -1,4 +1,4 @@
-name: "Deploy to Azure"
+name: "Destroy branch"
 
 on:
   workflow_dispatch:
