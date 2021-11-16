@@ -28,3 +28,6 @@ jobs:
         with:
           inlineScript: |
             az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.BRANCH }}-launchpad-${{ env.REGION }}-rg --yes
+            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.BRANCH }}-conn1-${{ env.REGION }}-rg --yes
+            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.BRANCH }}-onpremhyperv1-${{ env.REGION }}-rg --yes
+            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.BRANCH }}-lz1-${{ env.REGION }}-rg --yes
