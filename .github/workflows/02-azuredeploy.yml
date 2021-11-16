@@ -28,7 +28,7 @@ jobs:
         shell: bash
         run: echo "This is ${{ env.BRANCH }}"
         id: extract_branch
-        
+
       - name: Azure login
         uses: azure/login@v1
         with:
@@ -47,6 +47,6 @@ jobs:
           deploymentMode: Complete
           template: ./modules/resourcegroup.bicep
           parameters:
-            RG_NAME: "${{ env.BRANCH }}-launchpad-${{ env.LOCATION }}-rg"
-            BRANCH: "${{ env.BRANCH }}"
-            LOCATION: ${{ env.LOCATION }}
+            RG_NAME="${{ env.BRANCH }}-launchpad-${{ env.LOCATION }}-rg"
+            BRANCH="${{ env.BRANCH }}"
+            LOCATION=${{ env.LOCATION }}
