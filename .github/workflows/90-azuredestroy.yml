@@ -17,7 +17,7 @@ jobs:
       - name: Set env.BRANCH
         run: echo "BRANCH=$(echo $GITHUB_REF | cut -d'/' -f 3)" >> $GITHUB_ENV
 
-      - uses: action/checkout@v2
+      - uses: actions/checkout@v2
 
       - uses: Azure/login@v1
         with:
