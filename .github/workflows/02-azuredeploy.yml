@@ -26,8 +26,9 @@ jobs:
       - run: echo "GITHUB_REF_NAME = ${GITHUB_REF_NAME}"
 
       # extract branch name into GitHub environment BRANCH
-      # - name: Set env.BRANCH
-      #   run: echo "BRANCH=$(echo $GITHUB_REF | cut -d'/' -f 3)" >> $GITHUB_ENV
+      - name: Set env.BRANCH
+        run: echo "BRANCH=$(echo $GITHUB_REF_NAME)" >> $GITHUB_ENV
+      #  run: echo "BRANCH=$(echo $GITHUB_REF | cut -d'/' -f 3)" >> $GITHUB_ENV
 
       # DEBUG: show branch name
       # - name: DEBUG - Extract branch name
@@ -51,5 +52,5 @@ jobs:
           # deploymentMode: Complete
           template: ./templates/01-resourcegroups.bicep
           parameters:
-            BRANCH=${{ env.GITHUB_REF_NAME }}
+            BRANCH=${{ env.BRANCH }}
             REGION=${{ env.REGION }}
