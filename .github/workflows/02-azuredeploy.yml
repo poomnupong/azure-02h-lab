@@ -39,10 +39,10 @@ jobs:
       
       - run: az account show -o table
 
-      - name: Deploy resource group
+      - name: Deploy resource groups
         uses: Azure/arm-deploy@v1
         with:
-          scope: subscription
+          scope: resourcegroup
           subscriptionId: ${{ env.SUBSCRIPTION_ID }}
           region: ${{ env.REGION }}
           deploymentMode: Complete
