@@ -10,7 +10,7 @@ on:
 
 env:
   SUBSCRIPTION_ID: "f7741b3d-d2ac-4be0-8083-e8dc60675c97"
-  LOCATION: southcentralus
+  REGION: southcentralus
 
 jobs:
   GitHub-Actions-Test:
@@ -44,9 +44,10 @@ jobs:
         with:
           scope: subscription
           subscriptionId: ${{ env.SUBSCRIPTION_ID }}
+          region: ${{ env.REGION }}
           deploymentMode: Complete
           template: ./modules/resourcegroup.bicep
           parameters:
-            RG_NAME="${{ env.BRANCH }}-launchpad-${{ env.LOCATION }}-rg"
+            RG_NAME="${{ env.BRANCH }}-launchpad-${{ env.REGION }}-rg"
             BRANCH="${{ env.BRANCH }}"
-            LOCATION=${{ env.LOCATION }}
+            REGION=${{ env.REGION }}
