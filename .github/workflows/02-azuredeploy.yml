@@ -22,6 +22,8 @@ jobs:
     steps:
       - name: DEBUG - see GITHUB_REF
         run: echo "variable ${GITHUB_REF}"
+      
+      - run: echo "GITHUB_REF_NAME = ${GITHUB_REF_NAME}"
 
       # extract branch name into GitHub environment BRANCH
       - name: Set env.BRANCH
