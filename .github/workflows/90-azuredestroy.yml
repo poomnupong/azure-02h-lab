@@ -2,6 +2,10 @@ name: "Destroy branch env in Azure"
 
 on:
   workflow_dispatch:
+  delete:
+    - dev*
+    - test
+    - prod
 
 env:
   SUBSCRIPTION_ID: f7741b3d-d2ac-4be0-8083-e8dc60675c97
