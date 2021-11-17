@@ -6,6 +6,7 @@ on:
 env:
   SUBSCRIPTION_ID: f7741b3d-d2ac-4be0-8083-e8dc60675c97
   REGION: southcentralus
+  PREFIX: 02h
 
 jobs:
   Destroy-Branch:
@@ -27,7 +28,7 @@ jobs:
         uses: Azure/cli@v1
         with:
           inlineScript: |
-            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.BRANCH }}-launchpad-${{ env.REGION }}-rg --yes
-            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.BRANCH }}-conn1-${{ env.REGION }}-rg --yes
-            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.BRANCH }}-onpremhpv1-${{ env.REGION }}-rg --yes
-            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.BRANCH }}-lz1-${{ env.REGION }}-rg --yes
+            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-launchpad-${{ env.REGION }}-rg --yes
+            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-conn1-${{ env.REGION }}-rg --yes
+            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-onpremhpv1-${{ env.REGION }}-rg --yes
+            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-lz1-${{ env.REGION }}-rg --yes
