@@ -3,9 +3,7 @@ name: "Deploy to Azure"
 on:
   push:
     branches:
-      - test
-      - prod
-      - dev2
+      - dev*
   pull_request:
     branches:
       - test
