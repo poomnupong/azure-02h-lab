@@ -18,7 +18,7 @@ jobs:
     name: Deploy to Azure
     runs-on: ubuntu-latest
     steps:
-      # - name: DEBUG - see GITHUB_REFa
+      # - name: DEBUG - see GITHUB_REF
       #   run: echo "variable ${GITHUB_REF}"
       
       - run: echo "GITHUB_REF_NAME = ${GITHUB_REF_NAME}"
