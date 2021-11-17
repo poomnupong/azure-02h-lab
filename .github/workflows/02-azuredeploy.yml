@@ -4,24 +4,23 @@ on:
   push:
     branches:
       - dev*
-  pull_request:
-    branches:
       - test
       - prod
 
 env:
   SUBSCRIPTION_ID: "f7741b3d-d2ac-4be0-8083-e8dc60675c97"
   REGION: southcentralus
+  PREFIX: 02h
 
 jobs:
   Deploy-to-Azure:
     name: Deploy to Azure
     runs-on: ubuntu-latest
     steps:
-      - name: DEBUG - see GITHUB_REF
-        run: echo "variable ${GITHUB_REF}"
+      #- name: DEBUG - see GITHUB_REF
+      #  run: echo "variable ${GITHUB_REF}"
       
-      - run: echo "GITHUB_REF_NAME = ${GITHUB_REF_NAME}"
+      #- run: echo "GITHUB_REF_NAME = ${GITHUB_REF_NAME}"
 
       # extract branch name into GitHub environment BRANCH
       - name: Set env.BRANCH
@@ -52,3 +51,4 @@ jobs:
           parameters:
             BRANCH=${{ env.BRANCH }}
             REGION=${{ env.REGION }}
+            PREFIX=${{ env.PREFIX }}

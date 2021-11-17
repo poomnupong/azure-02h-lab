@@ -2,15 +2,16 @@
 
 targetScope = 'subscription'
 
+param PREFIX string = 'dummy'
 param BRANCH string
 param REGION string = 'southcentralus'
 
 // specify all resource group names here in array so we can loop through them a
 var RG_ARRAY = [
-  '${BRANCH}-launchpad-${REGION}-rg'
-  '${BRANCH}-conn1-${REGION}-rg'
-  '${BRANCH}-onpremhpv1-${REGION}-rg'
-  '${BRANCH}-lz1-${REGION}-rg'
+  '${PREFIX}-${BRANCH}-launchpad-${REGION}-rg'
+  '${PREFIX}-${BRANCH}-conn1-${REGION}-rg'
+  '${PREFIX}-${BRANCH}-onpremhpv1-${REGION}-rg'
+  '${PREFIX}-${BRANCH}-lz1-${REGION}-rg'
 ]
 
 // 
