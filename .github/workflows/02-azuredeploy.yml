@@ -57,7 +57,7 @@ jobs:
         uses: Azure/arm-deploy@v1
         with:
           scope: resourcegroup
-          resourceGroupName: "${{ env.PREFIX }}-${{ env.BRANCH }}-bootsrap1-${{ env.REGION }}-rg"
+          resourceGroupName: "${{ env.PREFIX }}-${{ env.BRANCH }}-bootstrap1-${{ env.REGION }}-rg"
           subscriptionId: ${{ env.SUBSCRIPTION_ID }}
           region: ${{ env.REGION }}
           deploymentMode: Complete
