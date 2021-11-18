@@ -5,16 +5,16 @@ targetScope = 'resourceGroup'
 /* may not need these
 param PREFIX string = 'dummy'
 param BRANCH string
-param REGION string = 'southcentralus'
 */
+param REGION string = 'southcentralus'
 
 var REGION_ABBR = 'scus'
-var RG string = 'bootstrap1'
-// var PROJECT_NAME string = '${PREFIX}-${RG}'
+var RG = 'bootstrap1'
+// var PROJECT_NAME = '${PREFIX}-${RG}'
 
 // main keyvault for bootstrap
 resource keyVault 'Microsoft.KeyVault/vaults@2019-09-01' = {
-  name: '${RG}-${REGION_ABBR}-kv-01'
+  name: '${RG}-${REGION}-kv-01'
   location: resourceGroup().location
   properties: {
     enabledForDeployment: true
@@ -47,7 +47,7 @@ resource keyVault 'Microsoft.KeyVault/vaults@2019-09-01' = {
 
 // main log analytics workspace for everything
 resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-10-01' = {
-  name: '${RG}-${REGION_ABBR}-law-01'
+  name: '${RG}-${REGION}-law-01'
   location: resourceGroup().location
   properties: {
     sku: {
@@ -58,7 +58,7 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-10
 
 // main vnet for everything in bootstrap1
 resource virtualNetwork 'Microsoft.Network/virtualNetworks@2019-11-01' = {
-  name: '${RG}-${REGION_ABBR}-vnet-01'
+  name: '${RG}-${REGION}-vnet-01'
   location: resourceGroup().location
   properties: {
     addressSpace: {
@@ -68,13 +68,13 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2019-11-01' = {
     }
     subnets: [
       {
-        name: '${RG}-${REGION_ABBR}-snet-01'
+        name: '${RG}-${REGION}-snet-01'
         properties: {
           addressPrefix: '10.0.0.0/27'
         }
       }
       {
-        name: '${RG}-${REGION_ABBR}-snet-02'
+        name: '${RG}-${REGION}-snet-02'
         properties: {
           addressPrefix: '10.0.32.0/27'
         }

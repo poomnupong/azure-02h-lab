@@ -62,3 +62,5 @@ jobs:
           region: ${{ env.REGION }}
           deploymentMode: Complete
           template: ./templates/10-bootstrap1.bicep
+          parameters:
+            REGION=${{ env.REGION }}
