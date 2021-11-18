@@ -2,7 +2,7 @@
 
 targetScope = 'resourceGroup'
 
-param BRANCH string
+// param BRANCH string
 param PREFIX string
 param REGION string = 'southcentralus'
 
