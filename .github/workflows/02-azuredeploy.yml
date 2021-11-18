@@ -70,5 +70,6 @@ jobs:
           deploymentMode: Complete
           template: ./templates/10-bootstrap1.bicep
           parameters:
+            BRANCH=${{ env.BRANCH }}
             REGION=${{ env.REGION }}
             PREFIX=${{ env.PREFIX }}

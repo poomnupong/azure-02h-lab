@@ -1,0 +1,5 @@
+git add . ; git commit -m "test deploy rg in batch 2 redeploy with existing rg" ; git push
+
+az deployment group create --mode complete --resource-group 02h-dev-bootstrap1-southcentralus-rg --template-file ./templates/10-bootstrap1_copy.bicep --parameters PREFIX=02h
+
+az deployment group create --mode complete --resource-group 02h-dev-onpremhpv1-southcentralus-rg --template-file ./templates/11-onpremhpv1.bicep --parameters PREFIX=02h BRANCH=dev adminUsername=admin01 adminPassword='C1sco123456$'
