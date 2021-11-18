@@ -1,6 +1,8 @@
 name: "Destroy branch env in Azure"
 
 on:
+  delete:
+    - dev*
   workflow_dispatch:
 
 env:
@@ -28,7 +30,7 @@ jobs:
         uses: Azure/cli@v1
         with:
           inlineScript: |
-            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-launchpad-${{ env.REGION }}-rg --yes
+            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-boostrap1-${{ env.REGION }}-rg --yes
             az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-conn1-${{ env.REGION }}-rg --yes
             az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-onpremhpv1-${{ env.REGION }}-rg --yes
             az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-lz1-${{ env.REGION }}-rg --yes
