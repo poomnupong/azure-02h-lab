@@ -4,21 +4,21 @@ targetScope = 'resourceGroup'
 
 param BRANCH string
 param PREFIX string
-param REGION string = 'southcentralus'
+//param REGION string = 'southcentralus'
 
-var RG = 'bootstrap1'
+//var RG = 'onpremhpv1'
 
 // hyperv-host for on-prem simulation
 
 param virtualMachineSize string = 'Standard_D4as_v4'
-param adminUsername string
+param adminUsername string = 'admin01'
 
 @secure()
 param adminPassword string
 param storageAccountType string = 'Standard_LRS'
 param location string = resourceGroup().location
 
-var virtualMachineName = 'test01-vm'
+var virtualMachineName = 'onprem1-vm'
 var nic1Name = '${virtualMachineName}nic1'
 var publicIPAddressName = '${virtualMachineName}-pip1'
 var diagStorageAccountName = 'diags${uniqueString(resourceGroup().id)}'
@@ -87,7 +87,7 @@ resource diagsAccount 'Microsoft.Storage/storageAccounts@2019-06-01' = {
 // This will build a Virtual Network.
 resource vnet 'Microsoft.Network/virtualNetworks@2020-06-01' existing = {
   name: 'bootstrap1-southcentralus-vnet-01'
-  scope: resourceGroup('02h-${BRANCH}-bootstrap1-southcentralus-rg')
+  scope: resourceGroup('${PREFIX}-${BRANCH}-bootstrap1-southcentralus-rg')
 }
 
 // This will be your Primary NIC
@@ -146,5 +146,3 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2020-06-01' = {
     ]
   }
 }
-
-output publicIp string = pip.properties.ipAddress

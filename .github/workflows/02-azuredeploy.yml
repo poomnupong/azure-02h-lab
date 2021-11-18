@@ -72,3 +72,29 @@ jobs:
           parameters:
             REGION=${{ env.REGION }}
             PREFIX=${{ env.PREFIX }}
+  
+  Deploy_to_onpremhpv1-rg:
+    name: Deploy to onpremhpv1-rg
+    runs-on: ubuntu-latest
+    needs: [Create-Resource-Groups]
+    steps:
+      - name: Set env.BRANCH
+        run: echo "BRANCH=$(echo $GITHUB_REF | cut -d'/' -f 3)" >> $GITHUB_ENV
+      - uses: actions/checkout@v2
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Deploy resources to bootstrap1
+        uses: Azure/arm-deploy@v1
+        with:
+          scope: resourcegroup
+          resourceGroupName: "${{ env.PREFIX }}-${{ env.BRANCH }}-onpremhpv1-${{ env.REGION }}-rg"
+          subscriptionId: ${{ env.SUBSCRIPTION_ID }}
+          region: ${{ env.REGION }}
+          deploymentMode: Complete
+          template: ./templates/11-onpremhpv1.bicep
+          parameters:
+            BRANCH=${{ env.BRANCH }}
+            # REGION=${{ env.REGION }}
+            PREFIX=${{ env.PREFIX }}
+            adminPassword=${{ secrets.VMPASSWD }}
