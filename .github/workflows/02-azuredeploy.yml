@@ -52,3 +52,13 @@ jobs:
             BRANCH=${{ env.BRANCH }}
             REGION=${{ env.REGION }}
             PREFIX=${{ env.PREFIX }}
+
+      - name: Deploy resources to bootstrap1
+        uses: Azure/arm-deploy@v1
+        with:
+          scope: resourcegroup
+          resourceGroupName: "${{ PREFIX }}-${{ env.BRANCH }}-boostrap1-${{ env.REGION }}-rg"
+          subscriptionId: ${{ env.SUBSCRIPTION_ID }}
+          region: ${{ env.REGION }}
+          deploymentMode: Complete
+          template: ./templates/10-bootstrap1.bicep
