@@ -2,13 +2,10 @@
 
 targetScope = 'resourceGroup'
 
-
 param PREFIX string
 param REGION string = 'southcentralus'
 
-// var REGION_ABBR = 'scus'
 var RG = 'bootstrap1'
-// var PROJECT_NAME = '${PREFIX}-${RG}'
 
 // main key vault for bootstrap
 resource keyVault 'Microsoft.KeyVault/vaults@2019-09-01' = {
