@@ -95,6 +95,5 @@ jobs:
           template: ./templates/11-onpremhpv1.bicep
           parameters:
             BRANCH=${{ env.BRANCH }}
-            # REGION=${{ env.REGION }}
             PREFIX=${{ env.PREFIX }}
             adminPassword=${{ secrets.VMPASSWD }}
