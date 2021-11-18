@@ -64,3 +64,4 @@ jobs:
           template: ./templates/10-bootstrap1.bicep
           parameters:
             REGION=${{ env.REGION }}
+            PREFIX=${{ env.PREFIX }}

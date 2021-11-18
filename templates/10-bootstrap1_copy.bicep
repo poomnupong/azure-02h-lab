@@ -2,15 +2,22 @@
 
 targetScope = 'resourceGroup'
 
-
 param PREFIX string
 param REGION string = 'southcentralus'
 
-// var REGION_ABBR = 'scus'
 var RG = 'bootstrap1'
-// var PROJECT_NAME = '${PREFIX}-${RG}'
 
-// main key vault for bootstrap
+// main log analytics workspace for everything
+resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-10-01' = {
+  name: '${RG}-${REGION}-law-01'
+  location: resourceGroup().location
+  properties: {
+    sku: {
+      name: 'Standalone'
+    }
+  }
+}
+
 resource keyVault 'Microsoft.KeyVault/vaults@2019-09-01' = {
   name: 'k-${PREFIX}${uniqueString(resourceGroup().id)}'
   location: resourceGroup().location
@@ -41,18 +48,6 @@ resource keyVault 'Microsoft.KeyVault/vaults@2019-09-01' = {
   }
 }
 
-// main log analytics workspace for everything
-resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-10-01' = {
-  name: '${RG}-${REGION}-law-01'
-  location: resourceGroup().location
-  properties: {
-    sku: {
-      name: 'Standalone'
-    }
-  }
-}
-
-// main vnet for everything in bootstrap1
 resource virtualNetwork 'Microsoft.Network/virtualNetworks@2019-11-01' = {
   name: '${RG}-${REGION}-vnet-01'
   location: resourceGroup().location
