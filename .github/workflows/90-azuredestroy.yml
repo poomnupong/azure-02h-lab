@@ -2,7 +2,8 @@ name: "Destroy branch env in Azure"
 
 on:
   delete:
-    - dev*
+    branches:
+      - dev*
   workflow_dispatch:
 
 env:
