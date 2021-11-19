@@ -22,7 +22,7 @@ param storageAccountType string = 'Standard_LRS'
 param location string = resourceGroup().location
 
 var virtualMachineName = 'onprem1-vm'
-var nic1Name = '${virtualMachineName}nic1'
+var nic1Name = '${virtualMachineName}-nic1'
 var publicIPAddressName = '${virtualMachineName}-pip1'
 var diagStorageAccountName = 'diags${uniqueString(resourceGroup().id)}'
 var networkSecurityGroupName = '${virtualMachineName}-nsg1'
@@ -58,9 +58,25 @@ resource vm 'Microsoft.Compute/virtualMachines@2020-06-01' = {
         version: 'latest'
       }
       osDisk: {
+        name: '${virtualMachineName}-OsDisk'
         createOption: 'FromImage'
+        managedDisk: {
+          storageAccountType: 'Premium_LRS'
+        }
+        caching: 'ReadWrite'
       }
-      dataDisks: []
+      dataDisks: [
+        {
+          lun: 0
+          name: '${virtualMachineName}-DataDisk1'
+          createOption: 'Empty'
+          diskSizeGB: 1024
+          caching: 'ReadOnly'
+          managedDisk: {
+            storageAccountType: 'Premium_LRS'
+          }
+        }
+      ]
     }
     networkProfile: {
       networkInterfaces: [
@@ -78,6 +94,7 @@ resource vm 'Microsoft.Compute/virtualMachines@2020-06-01' = {
   }
 }
 
+/*
 resource diagsAccount 'Microsoft.Storage/storageAccounts@2019-06-01' = {
   name: diagStorageAccountName
   location: resourceGroup().location
@@ -86,6 +103,7 @@ resource diagsAccount 'Microsoft.Storage/storageAccounts@2019-06-01' = {
   }
   kind: 'Storage'
 }
+*/
 
 // This will build a Virtual Network.
 resource vnet 'Microsoft.Network/virtualNetworks@2020-06-01' existing = {
