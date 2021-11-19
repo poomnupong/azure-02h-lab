@@ -9,9 +9,11 @@ param PREFIX string
 //var RG = 'onpremhpv1'
 
 // hyperv-host for on-prem simulation
-
-//param virtualMachineSize string = 'Standard_D4as_v4'
-param virtualMachineSize string = 'Standard_D4s_v3'
+// D4s_v3 - works - original
+// D4s-v4 - ?
+// D4s-v5 - ?
+// D4as_v4 - doesn't work
+param virtualMachineSize string = 'Standard_D4s_v5'
 param adminUsername string = 'admin01'
 
 @secure()
