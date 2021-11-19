@@ -13,7 +13,7 @@ param PREFIX string
 // D4s-v4 - ?
 // D4s-v5 - not available in scus as of 2021.11.18
 // D4as_v4 - doesn't work
-param virtualMachineSize string = 'Standard_D4s_v4'
+param virtualMachineSize string = 'Standard_D4s_v3'
 param adminUsername string = 'admin01'
 
 @secure()
