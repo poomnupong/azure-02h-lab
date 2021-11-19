@@ -18,13 +18,13 @@ param adminUsername string = 'admin01'
 
 @secure()
 param adminPassword string
-param storageAccountType string = 'Standard_LRS'
+param storageAccountType string = 'Premium_LRS'
 param location string = resourceGroup().location
 
 var virtualMachineName = 'onprem1-vm'
 var nic1Name = '${virtualMachineName}-nic1'
 var publicIPAddressName = '${virtualMachineName}-pip1'
-var diagStorageAccountName = 'diags${uniqueString(resourceGroup().id)}'
+// var diagStorageAccountName = 'diags${uniqueString(resourceGroup().id)}'
 var networkSecurityGroupName = '${virtualMachineName}-nsg1'
 
 // This is the virtual machine that you're building.
@@ -61,7 +61,7 @@ resource vm 'Microsoft.Compute/virtualMachines@2020-06-01' = {
         name: '${virtualMachineName}-OsDisk'
         createOption: 'FromImage'
         managedDisk: {
-          storageAccountType: 'Premium_LRS'
+          storageAccountType: '${storageAccountType}'
         }
         caching: 'ReadWrite'
       }
@@ -73,7 +73,7 @@ resource vm 'Microsoft.Compute/virtualMachines@2020-06-01' = {
           diskSizeGB: 1024
           caching: 'ReadOnly'
           managedDisk: {
-            storageAccountType: 'Premium_LRS'
+            storageAccountType: '${storageAccountType}'
           }
         }
       ]
