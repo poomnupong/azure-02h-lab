@@ -10,7 +10,8 @@ param PREFIX string
 
 // hyperv-host for on-prem simulation
 
-param virtualMachineSize string = 'Standard_D4as_v4'
+//param virtualMachineSize string = 'Standard_D4as_v4'
+param virtualMachineSize string = 'Standard_D4s_v3'
 param adminUsername string = 'admin01'
 
 @secure()
