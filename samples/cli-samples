@@ -22,3 +22,6 @@ az deployment group create --mode complete --resource-group 02h-dev-onpremhpv1-s
 
 az group create --location westus --resource-group test01-westus-rg
 az deployment group create --mode complete --resource-group test01-westus-rg --template-file ./samples/nested-vms-in-virtual-network/azuredeploy.json --parameters HostAdminUsername='admin01' --parameters HostAdminPassword='NameName3322$'
+
+az group create --location westus --resource-group test02-westus-rg
+az deployment group create --mode complete --resource-group test02-westus-rg --template-file ./samples/nested-vms-in-virtual-network/main.bicep --parameters HostAdminUsername='admin01' --parameters HostAdminPassword='NameName3322$'
