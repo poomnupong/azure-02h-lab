@@ -79,8 +79,10 @@ param HostVirtualMachineName string = 'HVHOST'
   'Standard_E16s_v3'
   'Standard_E32s_v3'
   'Standard_E64s_v3'
+  'Standard_D4s_v4'
+  'Standard_D4s_v5'
 ])
-param HostVirtualMachineSize string = 'Standard_D4s_v3'
+param HostVirtualMachineSize string = 'Standard_D4s_v5'
 
 @description('Admin Username for the Host Virtual Machine')
 param HostAdminUsername string
@@ -260,11 +262,17 @@ resource hostVm 'Microsoft.Compute/virtualMachines@2021-03-01' = {
     hardwareProfile: {
       vmSize: HostVirtualMachineSize
     }
+    licenseType: 'Windows_Server'
+    priority: 'Spot'
+    evictionPolicy: 'Deallocate'
+    billingProfile: {
+      maxPrice: -1
+    }
     storageProfile: {
       imageReference: {
         publisher: 'MicrosoftWindowsServer'
         offer: 'WindowsServer'
-        sku: '2016-Datacenter'
+        sku: '2022-datacenter-g2'
         version: 'latest'
       }
       osDisk: {
