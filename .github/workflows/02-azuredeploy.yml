@@ -118,5 +118,25 @@ jobs:
           region: ${{ env.REGION }}
           deploymentMode: Complete
           template: ./templates/12-conn1.bicep
-          # parameters:
-          #   BRANCH=${{ env.BRANCH }}
+
+  Deploy_to_lz1-rg:
+    name: Deploy to lz11-rg
+    runs-on: ubuntu-latest
+    needs: [Create-Resource-Groups]
+    steps:
+      - name: Set env.BRANCH
+        run: echo "BRANCH=$(echo $GITHUB_REF | cut -d'/' -f 3)" >> $GITHUB_ENV
+      - uses: actions/checkout@v2
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Deploy resources to conn1
+        uses: Azure/arm-deploy@v1
+        with:
+          scope: resourcegroup
+          resourceGroupName: "${{ env.PREFIX }}-${{ env.BRANCH }}-lz1-${{ env.REGION }}-rg"
+          subscriptionId: ${{ env.SUBSCRIPTION_ID }}
+          region: ${{ env.REGION }}
+          deploymentMode: Complete
+          template: ./templates/15-lz1.bicep
+# next: add small dummy VM in lz1
