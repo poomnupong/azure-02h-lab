@@ -139,4 +139,5 @@ jobs:
           region: ${{ env.REGION }}
           deploymentMode: Complete
           template: ./templates/15-lz1.bicep
+
 # next: add small dummy VM in lz1
