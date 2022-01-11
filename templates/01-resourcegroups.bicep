@@ -12,6 +12,8 @@ var RG_ARRAY = [
   '${PREFIX}-${BRANCH}-conn1-${REGION}-rg'
   '${PREFIX}-${BRANCH}-onpremhpv1-${REGION}-rg'
   '${PREFIX}-${BRANCH}-lz1-${REGION}-rg'
+  '${PREFIX}-${BRANCH}-lz2-${REGION}-rg'
+  '${PREFIX}-${BRANCH}-lz3-${REGION}-rg'
 ]
 
 // create all resource groups through loop

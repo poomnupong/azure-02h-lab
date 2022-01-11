@@ -93,7 +93,7 @@ jobs:
       #     subscriptionId: ${{ env.SUBSCRIPTION_ID }}
       #     region: ${{ env.REGION }}
       #     deploymentMode: Complete
-      #     template: ./templates/09-onpremhpv1.bicep
+      #     template: ./templates/11-onpremhpv1.bicep
       #     parameters:
       #       BRANCH=${{ env.BRANCH }}
       #       PREFIX=${{ env.PREFIX }}
