@@ -80,7 +80,7 @@ resource bastion1 'Microsoft.Network/bastionHosts@2021-05-01' = {
       {
         name: 'ipconfig1'
         properties: {
-          privateIPAllocationMethod: 'string'
+          // privateIPAllocationMethod: 'Dynamic'
           publicIPAddress: {
             id: bastion1pip1.id
           }
