@@ -50,7 +50,7 @@ resource natGateway 'Microsoft.Network/natGateways@2021-05-01' = {
     name: 'Standard'
   }
   properties: {
-    idleTimeoutInMinutes: 3
+    idleTimeoutInMinutes: 4
     publicIpAddresses: [
       {
         id: natpip1.id
@@ -63,8 +63,11 @@ resource natGateway 'Microsoft.Network/natGateways@2021-05-01' = {
 resource natpip1 'Microsoft.Network/publicIPAddresses@2020-06-01' = {
   name: '${RG}-${REGION}-natg-pip-01'
   location: resourceGroup().location
+  sku:{
+    name: 'Standard'
+  }
   properties: {
-    publicIPAllocationMethod: 'Dynamic'
+    publicIPAllocationMethod: 'Static'
   }
 }
 
@@ -85,7 +88,7 @@ resource bastion1 'Microsoft.Network/bastionHosts@2021-05-01' = {
             id: bastion1pip1.id
           }
           subnet: {
-            id: resourceId('Microsoft.Network/VirtualNetworks/subnets',virtualNetwork.id,'AzureBastionSubnet')
+            id: resourceId('Microsoft.Network/VirtualNetworks/subnets',virtualNetwork.name,'AzureBastionSubnet')
           }
         }
       }
@@ -98,7 +101,10 @@ resource bastion1 'Microsoft.Network/bastionHosts@2021-05-01' = {
 resource bastion1pip1 'Microsoft.Network/publicIPAddresses@2020-06-01' = {
   name: '${RG}-${REGION}-bastion1-pip-01'
   location: resourceGroup().location
+  sku:{
+    name: 'Standard'
+  }
   properties: {
-    publicIPAllocationMethod: 'Dynamic'
+    publicIPAllocationMethod: 'Static'
   }
 }
