@@ -27,9 +27,9 @@ jobs:
         uses: Azure/cli@v1
         with:
           inlineScript: |
-            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-bootstrap1-${{ env.REGION }}-rg --nowait --yes
-            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-conn1-${{ env.REGION }}-rg --nowait --yes
-            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-onpremhpv1-${{ env.REGION }}-rg --nowait --yes
-            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-lz1-${{ env.REGION }}-rg --nowait --yes
-            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-lz2-${{ env.REGION }}-rg --nowait --yes
-            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-lz3-${{ env.REGION }}-rg --nowait --yes
+            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-conn1-${{ env.REGION }}-rg --yes &
+            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-onpremhpv1-${{ env.REGION }}-rg --yes &
+            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-lz1-${{ env.REGION }}-rg --yes &
+            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-lz2-${{ env.REGION }}-rg --yes &
+            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-lz3-${{ env.REGION }}-rg --yes &
+            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-bootstrap1-${{ env.REGION }}-rg --yes

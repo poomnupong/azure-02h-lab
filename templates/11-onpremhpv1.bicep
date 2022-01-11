@@ -28,7 +28,7 @@ var publicIPAddressName = '${virtualMachineName}-pip1'
 // var diagStorageAccountName = 'diags${uniqueString(resourceGroup().id)}'
 var networkSecurityGroupName = '${virtualMachineName}-nsg1'
 
-// This is the virtual machine that you're building.
+// VM for nested hyper-v
 resource vm 'Microsoft.Compute/virtualMachines@2020-06-01' = {
   name: virtualMachineName
   location: resourceGroup().location
