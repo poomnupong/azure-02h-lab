@@ -17,7 +17,7 @@ param location string = resourceGroup().location
 
 var virtualMachineName = '${RG}-${REGION}-vm-01'
 var nic1Name = '${virtualMachineName}-nic1'
-var publicIPAddressName = '${virtualMachineName}-pip1'
+// var publicIPAddressName = '${virtualMachineName}-pip1'
 // var diagStorageAccountName = 'diags${uniqueString(resourceGroup().id)}'
 var networkSecurityGroupName = '${virtualMachineName}-nsg1'
 
