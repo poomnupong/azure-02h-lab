@@ -1,0 +1,26 @@
+git add . ; git commit -m "test deploy rg in batch 2 redeploy with existing rg" ; git push
+
+az login --use-device-code
+
+az deployment group create --mode complete --resource-group 02h-dev-bootstrap1-southcentralus-rg --template-file ./templates/10-bootstrap1_copy.bicep --parameters PREFIX=02h
+
+az deployment group create --mode complete --resource-group 02h-dev-onpremhpv1-southcentralus-rg --template-file ./templates/11-onpremhpv1.bicep --parameters PREFIX=02h BRANCH=dev adminUsername=admin01 adminPassword='NameName3322$'
+
+#== nested VM in Azure, cli to call template. Original URL:
+https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fdemos%2Fnested-vms-in-virtual-network%2Fazuredeploy.json
+
+Required parameters:
+resourceGroup (aside from this)
+HostAdminUsername
+HostAdminPassword
+
+az group create --location westus --resource-group test01-westus-rg
+az group delete --resource-group test01-westus-rg --yes
+
+az deployment group create --mode complete --resource-group 02h-dev-onpremhpv1-southcentralus-rg --template-file ./samples/nested-vms-in-virtual-network/azuredeploy.json --parameters ./samples/nested-vms-in-virtual-network/azuredeploy.parameters.json --parameters HostAdminUsername='admin01' --parameters HostAdminPassword='NameName3322$'
+
+az group create --location westus --resource-group test01-westus-rg
+az deployment group create --mode complete --resource-group test01-westus-rg --template-file ./samples/nested-vms-in-virtual-network/azuredeploy.json --parameters HostAdminUsername='admin01' --parameters HostAdminPassword='NameName3322$'
+
+az group create --location westus --resource-group test02-westus-rg
+az deployment group create --mode complete --resource-group test02-westus-rg --template-file ./samples/nested-vms-in-virtual-network/main.bicep --parameters HostAdminUsername='admin01' --parameters HostAdminPassword='NameName3322$'
