@@ -3,7 +3,7 @@
 
 targetScope = 'resourceGroup'
 
-var RG = 'lz1'
+var RG = 'lz2'
 // param BRANCH string
 // param PREFIX string
 param REGION string = 'southcentralus'
@@ -28,14 +28,14 @@ resource vnet 'Microsoft.Network/virtualNetworks@2019-11-01' = {
   properties: {
     addressSpace: {
       addressPrefixes: [
-        '10.1.1.0/24'
+        '10.1.2.0/24'
       ]
     }
     subnets: [
       {
         name: '${RG}-${REGION}-snet-01'
         properties: {
-          addressPrefix: '10.1.1.0/27'
+          addressPrefix: '10.1.2.0/27'
         }
       }
     ]
