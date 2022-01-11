@@ -94,7 +94,7 @@ resource vm 'Microsoft.Compute/virtualMachines@2020-06-01' = {
   }
 }
 
-/*
+/* ### not doing managed diag storage for now
 resource diagsAccount 'Microsoft.Storage/storageAccounts@2019-06-01' = {
   name: diagStorageAccountName
   location: resourceGroup().location
@@ -105,7 +105,7 @@ resource diagsAccount 'Microsoft.Storage/storageAccounts@2019-06-01' = {
 }
 */
 
-// This will build a Virtual Network.
+// pick up existing vnet from bootstrap1
 resource vnet 'Microsoft.Network/virtualNetworks@2020-06-01' existing = {
   name: 'bootstrap1-southcentralus-vnet-01'
   scope: resourceGroup('${PREFIX}-${BRANCH}-bootstrap1-southcentralus-rg')
