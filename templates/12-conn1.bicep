@@ -88,7 +88,8 @@ resource bastion1 'Microsoft.Network/bastionHosts@2021-05-01' = {
             id: bastion1pip1.id
           }
           subnet: {
-            id: resourceId('Microsoft.Network/VirtualNetworks/subnets',virtualNetwork.name,'AzureBastionSubnet')
+            // id: resourceId('Microsoft.Network/VirtualNetworks/subnets',virtualNetwork.name,'AzureBastionSubnet')
+            id: '${virtualNetwork.id}/subnets/AzureBastionSubnet'
           }
         }
       }
