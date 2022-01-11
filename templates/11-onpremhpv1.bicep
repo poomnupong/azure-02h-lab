@@ -61,7 +61,7 @@ resource vm 'Microsoft.Compute/virtualMachines@2020-06-01' = {
         name: '${virtualMachineName}-OsDisk'
         createOption: 'FromImage'
         managedDisk: {
-          storageAccountType: '${storageAccountType}'
+          storageAccountType: storageAccountType
         }
         caching: 'ReadWrite'
       }
@@ -73,7 +73,7 @@ resource vm 'Microsoft.Compute/virtualMachines@2020-06-01' = {
           diskSizeGB: 1024
           caching: 'ReadOnly'
           managedDisk: {
-            storageAccountType: '${storageAccountType}'
+            storageAccountType: storageAccountType
           }
         }
       ]
