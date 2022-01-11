@@ -118,5 +118,5 @@ jobs:
           region: ${{ env.REGION }}
           deploymentMode: Complete
           template: ./templates/12-conn1.bicep
-          parameters:
-            BRANCH=${{ env.BRANCH }}
+          # parameters:
+          #   BRANCH=${{ env.BRANCH }}
