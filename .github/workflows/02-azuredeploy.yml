@@ -84,7 +84,7 @@ jobs:
   #     - uses: azure/login@v1
   #       with:
   #         creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - name: Deploy resources to bootstrap1
+      - name: Deploy resources to onpremhpv1
         uses: Azure/arm-deploy@v1
         with:
           scope: resourcegroup
