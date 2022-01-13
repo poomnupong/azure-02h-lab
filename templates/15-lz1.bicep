@@ -39,6 +39,9 @@ resource vnet 'Microsoft.Network/virtualNetworks@2019-11-01' = {
         }
       }
     ]
+    virtualNetworkPeerings: [
+      
+    ]
   }
 }
 
