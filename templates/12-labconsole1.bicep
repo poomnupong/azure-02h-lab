@@ -6,8 +6,8 @@ targetScope = 'resourceGroup'
 param REGION string = 'southcentralus'
 param BRANCH string
 param PREFIX string
-//param REGION string = 'southcentralus'
-var RG = 'labconsole'
+// param REGION string = 'southcentralus'
+// var RG = 'labconsole'
 
 // hyperv-host for on-prem simulation
 // D4s_v3 - works - original
