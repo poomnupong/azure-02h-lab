@@ -245,7 +245,7 @@ jobs:
           resourceGroupName: "${{ env.PREFIX }}-${{ env.BRANCH }}-lz1-${{ env.REGION }}-rg"
           subscriptionId: ${{ env.SUBSCRIPTION_ID }}
           region: ${{ env.REGION }}
-          deploymentMode: Complete
+          deploymentMode: Incremental
           template: ./templates/21-vnetpeering.bicep
           parameters:
             BRANCH=${{ env.BRANCH }}
