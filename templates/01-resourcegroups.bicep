@@ -9,8 +9,9 @@ param REGION string = 'southcentralus'
 // specify all resource group names here in array so we can loop through them a
 var RG_ARRAY = [
   '${PREFIX}-${BRANCH}-bootstrap1-${REGION}-rg'
-  '${PREFIX}-${BRANCH}-conn1-${REGION}-rg'
   '${PREFIX}-${BRANCH}-onpremhpv1-${REGION}-rg'
+  '${PREFIX}-${BRANCH}-labconsole1-${REGION}-rg'
+  '${PREFIX}-${BRANCH}-conn1-${REGION}-rg'
   '${PREFIX}-${BRANCH}-lz1-${REGION}-rg'
   '${PREFIX}-${BRANCH}-lz2-${REGION}-rg'
   '${PREFIX}-${BRANCH}-lz3-${REGION}-rg'
