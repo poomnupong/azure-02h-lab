@@ -227,7 +227,7 @@ jobs:
           parameters:
             adminPassword=${{ secrets.VMPASSWD }}
 
-# ***TODO: change to az cli will be easier or module?
+# ***TODO: change to az cli will be easier or module?a
   Establish_vnet_peering:
     name: Deploy vnet peering
     runs-on: ubuntu-latest
