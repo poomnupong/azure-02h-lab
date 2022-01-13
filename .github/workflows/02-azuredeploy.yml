@@ -227,7 +227,8 @@ jobs:
           parameters:
             adminPassword=${{ secrets.VMPASSWD }}
 
-  Deploy_vnet_peering:
+# ***TODO: change to az cli will be easier or module?
+  Establish_vnet_peering:
     name: Deploy vnet peering
     runs-on: ubuntu-latest
     needs: [Deploy_to_conn1-rg,Deploy_to_lz1-rg]
@@ -238,17 +239,18 @@ jobs:
       - uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - name: Deploy resources to lz3
+      - name: Establish vnet peering lz1-conn1
         uses: Azure/arm-deploy@v1
         with:
-          # scope: resourcegroup
-          scope: subscription
+          scope: resourcegroup
           resourceGroupName: "${{ env.PREFIX }}-${{ env.BRANCH }}-lz1-${{ env.REGION }}-rg"
-          # subscriptionId: ${{ env.SUBSCRIPTION_ID }}
+          subscriptionId: ${{ env.SUBSCRIPTION_ID }}
           region: ${{ env.REGION }}
           deploymentMode: Incremental
-          template: ./templates/21-vnetpeering.bicep
+          template: ./templates/21-vnetpeering-mod.bicep
           parameters:
             BRANCH=${{ env.BRANCH }}
             PREFIX=${{ env.PREFIX }}
             REGION=${{ env.REGION }}
+            VNET1NAME='lz1-${{ env.REGION }}-vnet-01'
+            VNET2NAME='conn1-${{ env.REGION }}-vnet-01'
