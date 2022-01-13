@@ -26,7 +26,7 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2019-11-01' = {
         }
       }
       {
-        name: 'AzureGateway'
+        name: 'GatewaySubnet'
         properties: {
           addressPrefix: '10.1.0.32/27'
         }
@@ -96,7 +96,7 @@ resource bastion1 'Microsoft.Network/bastionHosts@2021-05-01' = {
 
 }
 
-// Public IP for NAT gateway
+// Public IP for bastion
 resource bastion1pip1 'Microsoft.Network/publicIPAddresses@2020-06-01' = {
   name: '${RG}-${REGION}-bastion1-pip-01'
   location: resourceGroup().location
@@ -105,5 +105,46 @@ resource bastion1pip1 'Microsoft.Network/publicIPAddresses@2020-06-01' = {
   }
   properties: {
     publicIPAllocationMethod: 'Static'
+  }
+}
+
+resource virtualNetworkGateway 'Microsoft.Network/virtualNetworkGateways@2020-11-01' = {
+  name: '${RG}-${REGION}-vng-01'
+  location: resourceGroup().location
+  properties: {
+    ipConfigurations: [
+      {
+        name: 'ipconfig1'
+        properties: {
+          privateIPAllocationMethod: 'Dynamic'
+          subnet: {
+            id: '${virtualNetwork.id}/subnets/GatewaySubnet'
+          }
+          publicIPAddress: {
+            id: vngpip1.id
+          }
+        }
+      }
+    ]
+    sku: {
+      name: 'VpnGw2'
+      tier: 'VpnGw2'
+    }
+    vpnGatewayGeneration: 'Generation2'
+    gatewayType: 'Vpn'
+    vpnType: 'RouteBased'
+    enableBgp: true
+  }
+}
+
+// Public IP for virtual network gateway
+resource vngpip1 'Microsoft.Network/publicIPAddresses@2020-06-01' = {
+  name: '${RG}-${REGION}-vng-pip-01'
+  location: resourceGroup().location
+  sku:{
+    name: 'Basic'
+  }
+  properties: {
+    publicIPAllocationMethod: 'Dynamic'
   }
 }

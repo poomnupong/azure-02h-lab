@@ -3,10 +3,9 @@
 
 targetScope = 'resourceGroup'
 
-// param REGION string = 'southcentralus'
 param BRANCH string
 param PREFIX string
-// param REGION string = 'southcentralus'
+param REGION string = 'southcentralus'
 // var RG = 'labconsole'
 
 // hyperv-host for on-prem simulation
@@ -32,8 +31,8 @@ var networkSecurityGroupName = '${virtualMachineName}-nsg1'
 
 // pick up existing vnet from bootstrap1
 resource vnet 'Microsoft.Network/virtualNetworks@2020-06-01' existing = {
-  name: 'bootstrap1-southcentralus-vnet-01'
-  scope: resourceGroup('${PREFIX}-${BRANCH}-bootstrap1-southcentralus-rg')
+  name: 'bootstrap1-${REGION}-vnet-01'
+  scope: resourceGroup('${PREFIX}-${BRANCH}-bootstrap1-${REGION}-rg')
 }
 
 // small VM for simple tests
