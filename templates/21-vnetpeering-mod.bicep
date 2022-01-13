@@ -7,8 +7,9 @@ param PREFIX string
 param REGION string = 'southcentralus'
 // var RG = 'labconsole'
 
-param VNET1NAME string = 'lz1-${REGION}-vnet-01'
-param VNET2NAME string = 'conn1-${REGION}-vnet-01'
+@secure()
+param VNET1NAME string
+param VNET2NAME string
 
 resource vnet1 'Microsoft.Network/virtualNetworks@2020-11-01' existing = {
   name: VNET1NAME

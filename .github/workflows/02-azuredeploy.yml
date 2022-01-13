@@ -252,5 +252,5 @@ jobs:
             BRANCH=${{ env.BRANCH }}
             PREFIX=${{ env.PREFIX }}
             REGION=${{ env.REGION }}
-            VNET1NAME='lz1-${{ env.REGION }}-vnet-01'
-            VNET2NAME='conn1-${{ env.REGION }}-vnet-01'
+            VNET1NAME=lz1-${{ env.REGION }}-vnet-01
+            VNET2NAME=conn1-${{ env.REGION }}-vnet-01
