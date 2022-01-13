@@ -1,6 +1,9 @@
 name: "Destroy branch env in Azure"
 
 on:
+  delete:
+    branches:
+      - dev*
   workflow_dispatch:
 
 env:
@@ -12,23 +15,21 @@ jobs:
   Destroy-Branch:
     name: Destroy branch environment
     runs-on: ubuntu-latest
-
     steps:
       # extract branch name into GitHub environment BRANCH
       - name: Set env.BRANCH
         run: echo "BRANCH=$(echo $GITHUB_REF_NAME)" >> $GITHUB_ENV
-
       - uses: actions/checkout@v2
-
       - uses: Azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-      
       - name: Destroy resource groups
         uses: Azure/cli@v1
         with:
           inlineScript: |
-            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-launchpad-${{ env.REGION }}-rg --yes
+            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-lz1-${{ env.REGION }}-rg --yes &
+            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-lz2-${{ env.REGION }}-rg --yes &
+            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-lz3-${{ env.REGION }}-rg --yes &
             az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-conn1-${{ env.REGION }}-rg --yes
             az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-onpremhpv1-${{ env.REGION }}-rg --yes
-            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-lz1-${{ env.REGION }}-rg --yes
+            az group delete --subscription ${{ env.SUBSCRIPTION_ID }} --name ${{ env.PREFIX }}-${{ env.BRANCH }}-bootstrap1-${{ env.REGION }}-rg --yes
