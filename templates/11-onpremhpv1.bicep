@@ -6,7 +6,6 @@ targetScope = 'resourceGroup'
 param BRANCH string
 param PREFIX string
 //param REGION string = 'southcentralus'
-
 //var RG = 'onpremhpv1'
 
 // hyperv-host for on-prem simulation

@@ -130,7 +130,7 @@ jobs:
           subscriptionId: ${{ env.SUBSCRIPTION_ID }}
           region: ${{ env.REGION }}
           deploymentMode: Complete
-          template: ./templates/12-conn1.bicep
+          template: ./templates/20-conn1.bicep
 
   Deploy_to_lz1-rg:
     name: Deploy to lz1-rg
