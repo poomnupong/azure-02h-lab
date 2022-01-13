@@ -1,6 +1,6 @@
 // deploy vnet peering between lz1 and hub
 
-// targetScope = 'resourceGroup'
+targetScope = 'subscription'
 
 param BRANCH string
 param PREFIX string

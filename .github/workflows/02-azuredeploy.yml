@@ -241,9 +241,10 @@ jobs:
       - name: Deploy resources to lz3
         uses: Azure/arm-deploy@v1
         with:
-          scope: resourcegroup
+          # scope: resourcegroup
+          scope: subscription
           resourceGroupName: "${{ env.PREFIX }}-${{ env.BRANCH }}-lz1-${{ env.REGION }}-rg"
-          subscriptionId: ${{ env.SUBSCRIPTION_ID }}
+          # subscriptionId: ${{ env.SUBSCRIPTION_ID }}
           region: ${{ env.REGION }}
           deploymentMode: Incremental
           template: ./templates/21-vnetpeering.bicep
