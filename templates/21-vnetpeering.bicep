@@ -1,6 +1,6 @@
 // deploy vnet peering between lz1 and hub
 
-targetScope = 'resourceGroup'
+// targetScope = 'resourceGroup'
 
 param BRANCH string
 param PREFIX string
@@ -34,3 +34,16 @@ resource peering1 'Microsoft.Network/virtualNetworks/virtualNetworkPeerings@2020
   }
 }
 
+resource peering2 'Microsoft.Network/virtualNetworks/virtualNetworkPeerings@2020-07-01' = {
+  name: '${VNET2NAME}-to-${VNET1NAME}'
+  parent: vnet2
+  properties: {
+    allowVirtualNetworkAccess: true
+    allowForwardedTraffic: true
+    allowGatewayTransit: false
+    useRemoteGateways: false
+    remoteVirtualNetwork: {
+      id: vnet1.id
+    }
+  }
+}
