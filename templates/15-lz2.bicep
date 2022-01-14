@@ -35,7 +35,7 @@ resource vnet 'Microsoft.Network/virtualNetworks@2019-11-01' = {
       {
         name: '${RG}-${REGION}-snet-01'
         properties: {
-          addressPrefix: '10.1.2.0/27'
+          addressPrefix: '10.1.2.128/27'
         }
       }
     ]
