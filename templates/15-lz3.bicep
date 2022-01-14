@@ -9,7 +9,7 @@ var RG = 'lz3'
 param REGION string = 'southcentralus'
 param virtualMachineSize string = 'Standard_F1s'
 
-param adminUsername string = 'admin01'
+param adminUsername string = 'user01'
 @secure()
 param adminPassword string
 param storageAccountType string = 'Premium_LRS'

@@ -14,7 +14,7 @@ param REGION string = 'southcentralus'
 // D4s-v5 - not available in scus as of 2021.11.18
 // D4as_v4 - doesn't work
 param virtualMachineSize string = 'Standard_D2s_v4'
-param adminUsername string = 'admin01'
+param adminUsername string = 'user01'
 
 // @secure()
 param adminPassword string
