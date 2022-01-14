@@ -1,5 +1,5 @@
 // deploy resources into lz1 resource group
-// contains spoke vnet and some workloadsa
+// contains spoke vnet and some workloads
 
 targetScope = 'resourceGroup'
 
