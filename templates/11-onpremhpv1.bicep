@@ -71,7 +71,7 @@ resource vm 'Microsoft.Compute/virtualMachines@2020-06-01' = {
           lun: 0
           name: '${virtualMachineName}-DataDisk1'
           createOption: 'Empty'
-          diskSizeGB: 256
+          diskSizeGB: 512
           caching: 'ReadOnly'
           managedDisk: {
             storageAccountType: storageAccountType
