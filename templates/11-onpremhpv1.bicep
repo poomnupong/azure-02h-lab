@@ -120,6 +120,7 @@ resource nic1 'Microsoft.Network/networkInterfaces@2020-06-01' = {
   name: nic1Name
   location: resourceGroup().location
   properties: {
+    primary: true
     enableIPForwarding: true
     ipConfigurations: [
       {
