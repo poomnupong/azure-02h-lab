@@ -83,6 +83,9 @@ resource vm 'Microsoft.Compute/virtualMachines@2020-06-01' = {
       networkInterfaces: [
         {
           id: nic1.id
+          properties: {
+            primary: true
+          }
         }
         {
           id: nic2.id
@@ -120,13 +123,11 @@ resource nic1 'Microsoft.Network/networkInterfaces@2020-06-01' = {
   name: nic1Name
   location: resourceGroup().location
   properties: {
-    primary: true
     enableIPForwarding: true
     ipConfigurations: [
       {
         name: 'ipconfig1'
         properties: {
-          primary: true
           subnet: {
             id: '${vnet1.id}/subnets/bootstrap1-southcentralus-snet-01'
           }
