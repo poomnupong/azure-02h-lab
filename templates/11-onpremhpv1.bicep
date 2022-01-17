@@ -71,7 +71,7 @@ resource vm 'Microsoft.Compute/virtualMachines@2020-06-01' = {
           lun: 0
           name: '${virtualMachineName}-DataDisk1'
           createOption: 'Empty'
-          diskSizeGB: 1024
+          diskSizeGB: 256
           caching: 'ReadOnly'
           managedDisk: {
             storageAccountType: storageAccountType
@@ -83,6 +83,9 @@ resource vm 'Microsoft.Compute/virtualMachines@2020-06-01' = {
       networkInterfaces: [
         {
           id: nic1.id
+        }
+        {
+          id: nic2.id
         }
       ]
     }
@@ -117,6 +120,7 @@ resource nic1 'Microsoft.Network/networkInterfaces@2020-06-01' = {
   name: nic1Name
   location: resourceGroup().location
   properties: {
+    enableIPForwarding: true
     ipConfigurations: [
       {
         name: 'ipconfig1'
