@@ -125,6 +125,7 @@ resource nic1 'Microsoft.Network/networkInterfaces@2020-06-01' = {
       {
         name: 'ipconfig1'
         properties: {
+          primary: true
           subnet: {
             id: '${vnet1.id}/subnets/bootstrap1-southcentralus-snet-01'
           }
