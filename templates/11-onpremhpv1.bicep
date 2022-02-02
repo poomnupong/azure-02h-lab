@@ -121,7 +121,7 @@ resource vnet1 'Microsoft.Network/virtualNetworks@2020-06-01' existing = {
   scope: resourceGroup('${PREFIX}-${BRANCH}-bootstrap1-southcentralus-rg')
 }
 
-// This will be your Primary NIC - for VM access
+// This will be your Primary NIC - for NAT
 resource nic1 'Microsoft.Network/networkInterfaces@2020-06-01' = {
   name: nic1Name
   location: resourceGroup().location
@@ -147,7 +147,7 @@ resource nic1 'Microsoft.Network/networkInterfaces@2020-06-01' = {
   }
 }
 
-// This will be your Primary NIC - for NAT
+// This will be your Primary NIC - for LAN
 resource nic2 'Microsoft.Network/networkInterfaces@2020-06-01' = {
   name: nic2Name
   location: resourceGroup().location
