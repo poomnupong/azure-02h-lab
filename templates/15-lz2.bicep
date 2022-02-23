@@ -13,7 +13,7 @@ param adminUsername string = 'user01'
 @secure()
 param adminPassword string
 param storageAccountType string = 'Premium_LRS'
-param location string = resourceGroup().location
+// param location string = resourceGroup().location
 
 var virtualMachineName = '${RG}-${REGION}-vm-01'
 var nic1Name = '${virtualMachineName}-nic1'
