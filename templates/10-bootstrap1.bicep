@@ -68,14 +68,43 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2019-11-01' = {
         name: '${RG}-${REGION}-snet-01'
         properties: {
           addressPrefix: '10.0.0.0/27'
+          networkSecurityGroup: {
+            id: nsg.id
+          }
         }
       }
       {
         name: '${RG}-${REGION}-snet-02'
         properties: {
           addressPrefix: '10.0.0.32/27'
+          networkSecurityGroup: {
+            id: nsg.id
+          }
         }
       }
+    ]
+  }
+}
+
+// Network Security Group (NSG) for the vnet
+resource nsg 'Microsoft.Network/networkSecurityGroups@2020-06-01' = {
+  name: '${RG}-${REGION}-vnet-01-nsg1'
+  location: resourceGroup().location
+  properties: {
+    securityRules: [
+      // {
+      //   name: 'allow-ssh-poomlab'
+      //   properties: {
+      //     priority: 1000
+      //     sourceAddressPrefix: '76.184.207.222'
+      //     protocol: 'Tcp'
+      //     destinationPortRange: '22'
+      //     access: 'Allow'
+      //     direction: 'Inbound'
+      //     sourcePortRange: '*'
+      //     destinationAddressPrefix: '*'
+      //   }
+      // }
     ]
   }
 }
