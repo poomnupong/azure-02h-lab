@@ -24,7 +24,7 @@ var networkSecurityGroupName = '${virtualMachineName}-nsg1'
 // main vnet
 resource vnet 'Microsoft.Network/virtualNetworks@2019-11-01' = {
   name: '${RG}-${REGION}-vnet-01'
-  location: resourceGroup().location
+  location: REGION
   properties: {
     addressSpace: {
       addressPrefixes: [
@@ -45,7 +45,7 @@ resource vnet 'Microsoft.Network/virtualNetworks@2019-11-01' = {
 // small VM for simple tests
 resource vm 'Microsoft.Compute/virtualMachines@2020-06-01' = {
   name: virtualMachineName
-  location: resourceGroup().location
+  location: REGION
   properties: {
     osProfile: {
       computerName: virtualMachineName
@@ -110,7 +110,7 @@ resource vm 'Microsoft.Compute/virtualMachines@2020-06-01' = {
 // This will be your Primary NIC
 resource nic1 'Microsoft.Network/networkInterfaces@2020-06-01' = {
   name: nic1Name
-  location: resourceGroup().location
+  location: REGION
   properties: {
     ipConfigurations: [
       {
@@ -144,7 +144,7 @@ resource nic1 'Microsoft.Network/networkInterfaces@2020-06-01' = {
 // Network Security Group (NSG) for your Primary NIC
 resource nsg 'Microsoft.Network/networkSecurityGroups@2020-06-01' = {
   name: networkSecurityGroupName
-  location: location
+  location: REGION
   properties: {
     securityRules: [
       // {

@@ -38,7 +38,7 @@ resource vnet 'Microsoft.Network/virtualNetworks@2020-06-01' existing = {
 // small VM for simple tests
 resource vm 'Microsoft.Compute/virtualMachines@2020-06-01' = {
   name: virtualMachineName
-  location: resourceGroup().location
+  location: REGION
   properties: {
     osProfile: {
       computerName: virtualMachineName
@@ -112,7 +112,7 @@ resource vm 'Microsoft.Compute/virtualMachines@2020-06-01' = {
 // This will be your Primary NIC
 resource nic1 'Microsoft.Network/networkInterfaces@2020-06-01' = {
   name: nic1Name
-  location: resourceGroup().location
+  location: REGION
   properties: {
     ipConfigurations: [
       {

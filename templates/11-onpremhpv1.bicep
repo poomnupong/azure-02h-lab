@@ -5,7 +5,7 @@ targetScope = 'resourceGroup'
 
 param BRANCH string
 param PREFIX string
-//param REGION string = 'southcentralus'
+param REGION string = 'southcentralus'
 //var RG = 'onpremhpv1'
 
 // hyperv-host for on-prem simulation
@@ -31,7 +31,7 @@ var publicIPAddressName = '${virtualMachineName}-pip1'
 // VM for nested hyper-v
 resource vm 'Microsoft.Compute/virtualMachines@2020-06-01' = {
   name: virtualMachineName
-  location: resourceGroup().location
+  location: REGION
   properties: {
     osProfile: {
       computerName: virtualMachineName
@@ -124,7 +124,7 @@ resource vnet1 'Microsoft.Network/virtualNetworks@2020-06-01' existing = {
 // This will be your Primary NIC - for NAT
 resource nic1 'Microsoft.Network/networkInterfaces@2020-06-01' = {
   name: nic1Name
-  location: resourceGroup().location
+  location: REGION
   properties: {
     enableIPForwarding: true
     ipConfigurations: [
@@ -150,7 +150,7 @@ resource nic1 'Microsoft.Network/networkInterfaces@2020-06-01' = {
 // This will be your Primary NIC - for LAN
 resource nic2 'Microsoft.Network/networkInterfaces@2020-06-01' = {
   name: nic2Name
-  location: resourceGroup().location
+  location: REGION
   properties: {
     ipConfigurations: [
       {

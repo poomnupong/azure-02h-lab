@@ -11,7 +11,7 @@ var RG = 'conn1'
 // main vnet for everything in bootstrap1
 resource virtualNetwork 'Microsoft.Network/virtualNetworks@2019-11-01' = {
   name: '${RG}-${REGION}-vnet-01'
-  location: resourceGroup().location
+  location: REGION
   properties: {
     addressSpace: {
       addressPrefixes: [
@@ -47,7 +47,7 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2019-11-01' = {
 // NAT gateway
 resource natGateway 'Microsoft.Network/natGateways@2021-05-01' = {
   name: '${RG}-${REGION}-natg-01'
-  location: resourceGroup().location
+  location: REGION
   sku: {
     name: 'Standard'
   }
@@ -64,7 +64,7 @@ resource natGateway 'Microsoft.Network/natGateways@2021-05-01' = {
 // Public IP for NAT gateway
 resource natpip1 'Microsoft.Network/publicIPAddresses@2020-06-01' = {
   name: '${RG}-${REGION}-natg-pip-01'
-  location: resourceGroup().location
+  location: REGION
   sku:{
     name: 'Standard'
   }
@@ -76,7 +76,7 @@ resource natpip1 'Microsoft.Network/publicIPAddresses@2020-06-01' = {
 // Bastion host
 resource bastion1 'Microsoft.Network/bastionHosts@2021-05-01' = {
   name: '${RG}-${REGION}-bastion-01'
-  location: resourceGroup().location
+  location: REGION
   sku: {
     name: 'Basic'
   }
@@ -102,7 +102,7 @@ resource bastion1 'Microsoft.Network/bastionHosts@2021-05-01' = {
 // Public IP for bastion
 resource bastion1pip1 'Microsoft.Network/publicIPAddresses@2020-06-01' = {
   name: '${RG}-${REGION}-bastion1-pip-01'
-  location: resourceGroup().location
+  location: REGION
   sku:{
     name: 'Standard'
   }
@@ -113,7 +113,7 @@ resource bastion1pip1 'Microsoft.Network/publicIPAddresses@2020-06-01' = {
 
 resource virtualNetworkGateway 'Microsoft.Network/virtualNetworkGateways@2020-11-01' = {
   name: '${RG}-${REGION}-vng-01'
-  location: resourceGroup().location
+  location: REGION
   properties: {
     ipConfigurations: [
       {
@@ -143,7 +143,7 @@ resource virtualNetworkGateway 'Microsoft.Network/virtualNetworkGateways@2020-11
 // Public IP for virtual network gateway
 resource vngpip1 'Microsoft.Network/publicIPAddresses@2020-06-01' = {
   name: '${RG}-${REGION}-vng-pip-01'
-  location: resourceGroup().location
+  location: REGION
   sku:{
     name: 'Basic'
   }
