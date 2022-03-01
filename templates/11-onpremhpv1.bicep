@@ -49,7 +49,7 @@ resource vm 'Microsoft.Compute/virtualMachines@2020-06-01' = {
     priority: 'Spot'
     evictionPolicy: 'Deallocate'
     billingProfile: {
-      maxPrice: '0.06'
+      maxPrice: -1
     }
     storageProfile: {
       imageReference: {
