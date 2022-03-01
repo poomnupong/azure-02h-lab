@@ -1,4 +1,4 @@
-// deploy resources into bootstrap1 resource group
+// deploy resources into bootstrap1 resource group 02
 // contains bootstrap elements of landing zone and also the nested hyper-v
 
 targetScope = 'resourceGroup'
