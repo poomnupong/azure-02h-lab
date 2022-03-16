@@ -1,4 +1,4 @@
-// deploy all necessary resource groups
+// deploy all necessary resource groups a
 
 targetScope = 'subscription'
 
