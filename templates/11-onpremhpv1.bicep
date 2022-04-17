@@ -13,7 +13,7 @@ param REGION string = 'southcentralus'
 // D4s-v4 - ?
 // D4s-v5 - not available in scus as of 2021.11.18
 // D4as_v4 - doesn't work
-param virtualMachineSize string = 'Standard_D4s_v3'
+param virtualMachineSize string = 'Standard_D4s_v5'
 param adminUsername string = 'user01'
 
 @secure()
@@ -117,7 +117,7 @@ resource diagsAccount 'Microsoft.Storage/storageAccounts@2019-06-01' = {
 
 // pick up existing vnet1 from bootstrap1
 resource vnet1 'Microsoft.Network/virtualNetworks@2020-06-01' existing = {
-  name: 'bootstrap1-southcentralus-vnet-01'
+  name: 'bootstrap1-southcentralus-vnet01'
   scope: resourceGroup('${PREFIX}-${BRANCH}-bootstrap1-southcentralus-rg')
 }
 
@@ -132,7 +132,7 @@ resource nic1 'Microsoft.Network/networkInterfaces@2020-06-01' = {
         name: 'ipconfig1'
         properties: {
           subnet: {
-            id: '${vnet1.id}/subnets/bootstrap1-southcentralus-snet-01'
+            id: '${vnet1.id}/subnets/bootstrap1-southcentralus-snet1'
           }
           privateIPAllocationMethod: 'Dynamic'
           publicIPAddress: {
@@ -157,7 +157,7 @@ resource nic2 'Microsoft.Network/networkInterfaces@2020-06-01' = {
         name: 'ipconfig1'
         properties: {
           subnet: {
-            id: '${vnet1.id}/subnets/bootstrap1-southcentralus-snet-02'
+            id: '${vnet1.id}/subnets/bootstrap1-southcentralus-snet2'
           }
           privateIPAllocationMethod: 'Dynamic'
           publicIPAddress: json('null')
@@ -185,19 +185,19 @@ resource nsg1 'Microsoft.Network/networkSecurityGroups@2020-06-01' = {
   location: location
   properties: {
     securityRules: [
-      {
-        name: 'allow-rdp-poomlab'
-        properties: {
-          priority: 1000
-          sourceAddressPrefix: '76.184.207.222'
-          protocol: 'Tcp'
-          destinationPortRange: '3389'
-          access: 'Allow'
-          direction: 'Inbound'
-          sourcePortRange: '*'
-          destinationAddressPrefix: '*'
-        }
-      }
+      // {
+      //   name: 'allow-rdp-poomlab'
+      //   properties: {
+      //     priority: 1000
+      //     sourceAddressPrefix: '76.184.207.222'
+      //     protocol: 'Tcp'
+      //     destinationPortRange: '3389'
+      //     access: 'Allow'
+      //     direction: 'Inbound'
+      //     sourcePortRange: '*'
+      //     destinationAddressPrefix: '*'
+      //   }
+      // }
     ]
   }
 }

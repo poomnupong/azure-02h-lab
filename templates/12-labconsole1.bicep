@@ -31,7 +31,7 @@ var networkSecurityGroupName = '${virtualMachineName}-nsg1'
 
 // pick up existing vnet from bootstrap1
 resource vnet 'Microsoft.Network/virtualNetworks@2020-06-01' existing = {
-  name: 'bootstrap1-${REGION}-vnet-01'
+  name: 'bootstrap1-${REGION}-vnet1'
   scope: resourceGroup('${PREFIX}-${BRANCH}-bootstrap1-${REGION}-rg')
 }
 
@@ -119,7 +119,7 @@ resource nic1 'Microsoft.Network/networkInterfaces@2020-06-01' = {
         name: 'ipconfig1'
         properties: {
           subnet: {
-            id: '${vnet.id}/subnets/bootstrap1-southcentralus-snet-01'
+            id: '${vnet.id}/subnets/bootstrap1-southcentralus-snet1'
           }
           privateIPAllocationMethod: 'Dynamic'
           publicIPAddress: {
@@ -149,19 +149,19 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2020-06-01' = {
   location: location
   properties: {
     securityRules: [
-      {
-        name: 'allow-ssh-poomlab'
-        properties: {
-          priority: 1000
-          sourceAddressPrefix: '76.184.207.222'
-          protocol: 'Tcp'
-          destinationPortRange: '22'
-          access: 'Allow'
-          direction: 'Inbound'
-          sourcePortRange: '*'
-          destinationAddressPrefix: '*'
-        }
-      }
+      // {
+      //   name: 'allow-ssh-poomlab'
+      //   properties: {
+      //     priority: 1000
+      //     sourceAddressPrefix: '76.184.207.222'
+      //     protocol: 'Tcp'
+      //     destinationPortRange: '22'
+      //     access: 'Allow'
+      //     direction: 'Inbound'
+      //     sourcePortRange: '*'
+      //     destinationAddressPrefix: '*'
+      //   }
+      // }
     ]
   }
 }

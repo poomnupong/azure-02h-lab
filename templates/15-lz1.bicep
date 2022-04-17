@@ -15,7 +15,7 @@ param adminPassword string
 param storageAccountType string = 'Premium_LRS'
 // param location string = resourceGroup().location
 
-var virtualMachineName = '${RG}-${REGION}-vm-01'
+var virtualMachineName = '${RG}-${REGION}-vm1'
 var nic1Name = '${virtualMachineName}-nic1'
 // var publicIPAddressName = '${virtualMachineName}-pip1'
 // var diagStorageAccountName = 'diags${uniqueString(resourceGroup().id)}'
@@ -23,7 +23,7 @@ var networkSecurityGroupName = '${virtualMachineName}-nsg1'
 
 // main vnet
 resource vnet 'Microsoft.Network/virtualNetworks@2019-11-01' = {
-  name: '${RG}-${REGION}-vnet-01'
+  name: '${RG}-${REGION}-vnet1'
   location: REGION
   properties: {
     addressSpace: {
@@ -33,7 +33,7 @@ resource vnet 'Microsoft.Network/virtualNetworks@2019-11-01' = {
     }
     subnets: [
       {
-        name: '${RG}-${REGION}-snet-01'
+        name: '${RG}-${REGION}-snet1'
         properties: {
           addressPrefix: '10.1.1.128/27'
         }
@@ -117,7 +117,7 @@ resource nic1 'Microsoft.Network/networkInterfaces@2020-06-01' = {
         name: 'ipconfig1'
         properties: {
           subnet: {
-            id: '${vnet.id}/subnets/${RG}-${REGION}-snet-01'
+            id: '${vnet.id}/subnets/${RG}-${REGION}-snet1'
           }
           privateIPAllocationMethod: 'Dynamic'
           // publicIPAddress: {

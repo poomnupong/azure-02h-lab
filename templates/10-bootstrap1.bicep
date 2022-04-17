@@ -44,7 +44,7 @@ resource keyVault 'Microsoft.KeyVault/vaults@2019-09-01' = {
 
 // main log analytics workspace for everything
 resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-10-01' = {
-  name: '${RG}-${REGION}-law-01'
+  name: '${RG}-${REGION}-law1'
   location: REGION
   properties: {
     sku: {
@@ -55,7 +55,7 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-10
 
 // main vnet for everything in bootstrap1
 resource virtualNetwork 'Microsoft.Network/virtualNetworks@2019-11-01' = {
-  name: '${RG}-${REGION}-vnet-01'
+  name: '${RG}-${REGION}-vnet1'
   location: REGION
   properties: {
     addressSpace: {
@@ -65,7 +65,7 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2019-11-01' = {
     }
     subnets: [
       {
-        name: '${RG}-${REGION}-snet-01'
+        name: '${RG}-${REGION}-snet01'
         properties: {
           addressPrefix: '10.0.0.0/27'
           networkSecurityGroup: {
@@ -74,7 +74,7 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2019-11-01' = {
         }
       }
       {
-        name: '${RG}-${REGION}-snet-02'
+        name: '${RG}-${REGION}-snet02'
         properties: {
           addressPrefix: '10.0.0.32/27'
           networkSecurityGroup: {
@@ -88,7 +88,7 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2019-11-01' = {
 
 // Network Security Group (NSG) for the vnet
 resource nsg 'Microsoft.Network/networkSecurityGroups@2020-06-01' = {
-  name: '${RG}-${REGION}-vnet-01-nsg1'
+  name: '${RG}-${REGION}-vnet01-nsg1'
   location: REGION
   properties: {
     securityRules: [
