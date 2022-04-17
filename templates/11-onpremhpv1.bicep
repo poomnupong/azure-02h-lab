@@ -117,7 +117,7 @@ resource diagsAccount 'Microsoft.Storage/storageAccounts@2019-06-01' = {
 
 // pick up existing vnet1 from bootstrap1
 resource vnet1 'Microsoft.Network/virtualNetworks@2020-06-01' existing = {
-  name: 'bootstrap1-southcentralus-vnet01'
+  name: 'bootstrap1-southcentralus-vnet1'
   scope: resourceGroup('${PREFIX}-${BRANCH}-bootstrap1-southcentralus-rg')
 }
 

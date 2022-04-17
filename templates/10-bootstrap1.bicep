@@ -65,7 +65,7 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2019-11-01' = {
     }
     subnets: [
       {
-        name: '${RG}-${REGION}-snet01'
+        name: '${RG}-${REGION}-snet1'
         properties: {
           addressPrefix: '10.0.0.0/27'
           networkSecurityGroup: {
@@ -74,7 +74,7 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2019-11-01' = {
         }
       }
       {
-        name: '${RG}-${REGION}-snet02'
+        name: '${RG}-${REGION}-snet2'
         properties: {
           addressPrefix: '10.0.0.32/27'
           networkSecurityGroup: {
