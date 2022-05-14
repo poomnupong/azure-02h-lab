@@ -1,5 +1,5 @@
 // deploy resources into onpremhyperv1 resource group
-// contains hyper-v host for nested workload to simulate on-prem a
+// contains hyper-v host for nested workload to simulate on-prem
 
 targetScope = 'resourceGroup'
 
